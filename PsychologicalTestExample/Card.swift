@@ -56,6 +56,13 @@ class Card: SKSpriteNode {
         run(fold, completion: {
             self.texture = self.back
             self.run(unfold)
+            
+            if let sparkParticlePath: String = Bundle.main.path(forResource: "CardSpark", ofType: "sks") {
+                let sparkParticleNode = NSKeyedUnarchiver.unarchiveObject(withFile: sparkParticlePath) as! SKEmitterNode
+                sparkParticleNode.position = CGPoint(x: 0, y: 0)
+                sparkParticleNode.zPosition = 10
+                self.addChild(sparkParticleNode)
+            }
         })
     }
 }

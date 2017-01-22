@@ -19,6 +19,7 @@
 		50014DDA1E34392D00CB7C6A /* CardDisplayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 50014DD91E34392D00CB7C6A /* CardDisplayScene.sks */; };
 		50014DDC1E34396100CB7C6A /* CardDisplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50014DDB1E34396100CB7C6A /* CardDisplayScene.swift */; };
 		50014DDE1E343E9F00CB7C6A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50014DDD1E343E9F00CB7C6A /* Card.swift */; };
+		50014DE01E345CE300CB7C6A /* CardSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 50014DDF1E345CE300CB7C6A /* CardSpark.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		50014DD91E34392D00CB7C6A /* CardDisplayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CardDisplayScene.sks; sourceTree = "<group>"; };
 		50014DDB1E34396100CB7C6A /* CardDisplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDisplayScene.swift; sourceTree = "<group>"; };
 		50014DDD1E343E9F00CB7C6A /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		50014DDF1E345CE300CB7C6A /* CardSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CardSpark.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				50014DD91E34392D00CB7C6A /* CardDisplayScene.sks */,
 				50014DDB1E34396100CB7C6A /* CardDisplayScene.swift */,
 				50014DDD1E343E9F00CB7C6A /* Card.swift */,
+				50014DDF1E345CE300CB7C6A /* CardSpark.sks */,
 			);
 			path = PsychologicalTestExample;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50014DE01E345CE300CB7C6A /* CardSpark.sks in Resources */,
 				50014DBD1E34351B00CB7C6A /* Main.storyboard in Resources */,
 				50014DB41E34351B00CB7C6A /* GameScene.sks in Resources */,
 				50014DBF1E34351B00CB7C6A /* Assets.xcassets in Resources */,
