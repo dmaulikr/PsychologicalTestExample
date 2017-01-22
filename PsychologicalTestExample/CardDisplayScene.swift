@@ -55,25 +55,4 @@ class CardDisplayScene: SKScene {
         
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch: AnyObject in touches {
-//            let location = touch.location(in: self)
-//            
-//            if let cardNode = atPoint(location) as? Card {
-//                let liftUp = SKAction.scale(to: CardDisplayScene.cardScale * 1.3, duration: 0.2)
-//                cardNode.run(liftUp)
-//            }
-//        }
-//    }
-//    
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch: AnyObject in touches {
-//            let location = touch.location(in: self)
-//            
-//            if let cardNode = atPoint(location) as? Card {
-//                let dropDown = SKAction.scale(to: CardDisplayScene.cardScale, duration: 0.2)
-//                cardNode.run(dropDown)
-//            }
-//        }
-//    }
 }
