@@ -13,6 +13,7 @@ class Card: SKSpriteNode {
     
     var front: SKTexture
     var back: SKTexture
+    var touched = false
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -50,19 +51,48 @@ class Card: SKSpriteNode {
         
         self.texture = self.back
         
-        let fold = SKAction.scaleX(to: 0.0, duration: 0.4)
-        let unfold = SKAction.scaleX(to: CardDisplayScene.cardScale, duration: 0.4)
-        
-        run(fold, completion: {
-            self.texture = self.back
-            self.run(unfold)
+        if !self.touched {
             
-            if let sparkParticlePath: String = Bundle.main.path(forResource: "CardSpark", ofType: "sks") {
-                let sparkParticleNode = NSKeyedUnarchiver.unarchiveObject(withFile: sparkParticlePath) as! SKEmitterNode
-                sparkParticleNode.position = CGPoint(x: 0, y: 0)
-                sparkParticleNode.zPosition = 10
-                self.addChild(sparkParticleNode)
-            }
-        })
+            let fold = SKAction.scaleX(to: 0.0, duration: 0.4)
+            let unfold = SKAction.scaleX(to: CardDisplayScene.cardScale, duration: 0.4)
+            
+            run(fold, completion: {
+                self.texture = self.back
+                self.run(unfold)
+                
+                if let sparkParticlePath: String = Bundle.main.path(forResource: "CardSpark", ofType: "sks") {
+                    let sparkParticleNode = NSKeyedUnarchiver.unarchiveObject(withFile: sparkParticlePath) as! SKEmitterNode
+                    sparkParticleNode.position = CGPoint(x: 0, y: 0)
+                    sparkParticleNode.zPosition = 10
+                    self.addChild(sparkParticleNode)
+                }
+            })
+            self.touched = true
+            
+        } else {
+            let alert = UIAlertController(title: "알림", message: "결과를 공유하시겠습니까?", preferredStyle: .alert )
+            
+            let actionOK = UIAlertAction(title: "Yes",
+                                         style: UIAlertActionStyle.default,
+                                         handler: {(action)->Void in self.shareHandler(action, alert: alert)})
+            
+            let actionCandel = UIAlertAction(title: "No",
+                                             style: UIAlertActionStyle.default,
+                                             handler: {(action)->Void in alert.dismiss(animated: true, completion: nil)})
+            
+            alert.addAction(actionOK)
+            alert.addAction(actionCandel)
+            
+            self.scene?.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func shareHandler(_ action:UIAlertAction, alert:UIAlertController) {
+        alert.dismiss(animated: true, completion: nil)
+        let shareText = "당신은 나에게 이런 의미입니다."
+        let shareImg = UIImage(cgImage: (self.texture?.cgImage())!)
+        let shareItems = [shareText,shareImg] as [Any]
+        let activityController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        self.scene?.view?.window?.rootViewController?.present(activityController, animated: true, completion: nil)
     }
 }
