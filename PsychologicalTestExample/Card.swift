@@ -23,16 +23,25 @@ class Card: SKSpriteNode {
         self.front = SKTexture(imageNamed: cardName)
         self.back = SKTexture(imageNamed: cardName+"_back")
         
-        super.init(texture: self.front, color: UIColor.white, size: self.front.size())
+        super.init(texture: self.front,
+                   color: UIColor.white,
+                   size: self.front.size())
+        
         isUserInteractionEnabled = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let liftUp = SKAction.scale(to: CardDisplayScene.cardScale * 1.3, duration: 0.2)
+        
+        let liftUp = SKAction.scale(to: CardDisplayScene.cardScale * 1.3,
+                                    duration: 0.2)
+        
         run(liftUp)
         
-        let rotateCCW = SKAction.rotate(toAngle: CGFloat(-M_1_PI / 10), duration: 0.1)
-        let rotateCW = SKAction.rotate(toAngle: CGFloat(M_1_PI / 10), duration: 0.1)
+        let rotateCCW = SKAction.rotate(toAngle: CGFloat(-M_1_PI / 10),
+                                        duration: 0.1)
+        
+        let rotateCW = SKAction.rotate(toAngle: CGFloat(M_1_PI / 10),
+                                       duration: 0.1)
         
         let rotate = SKAction.sequence([rotateCCW, rotateCW])
         let rotateRepeat = SKAction.repeatForever(rotate)
@@ -42,19 +51,24 @@ class Card: SKSpriteNode {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let dropDown = SKAction.scale(to: CardDisplayScene.cardScale, duration: 0.2)
+        
+        let dropDown = SKAction.scale(to: CardDisplayScene.cardScale,
+                                      duration: 0.2)
         run(dropDown)
         
         removeAction(forKey: "rotate")
-        let rotate = SKAction.rotate(toAngle: 0, duration: 0)
+        let rotate = SKAction.rotate(toAngle: 0,
+                                     duration: 0)
         run(rotate)
         
         self.texture = self.back
         
         if !self.touched {
             
-            let fold = SKAction.scaleX(to: 0.0, duration: 0.4)
-            let unfold = SKAction.scaleX(to: CardDisplayScene.cardScale, duration: 0.4)
+            let fold = SKAction.scaleX(to: 0.0,
+                                       duration: 0.4)
+            let unfold = SKAction.scaleX(to: CardDisplayScene.cardScale,
+                                         duration: 0.4)
             
             run(fold, completion: {
                 self.texture = self.back
@@ -70,7 +84,9 @@ class Card: SKSpriteNode {
             self.touched = true
             
         } else {
-            let alert = UIAlertController(title: "알림", message: "결과를 공유하시겠습니까?", preferredStyle: .alert )
+            let alert = UIAlertController(title: "알림",
+                                          message: "결과를 공유하시겠습니까?",
+                                          preferredStyle: .alert )
             
             let actionOK = UIAlertAction(title: "Yes",
                                          style: UIAlertActionStyle.default,
@@ -92,7 +108,8 @@ class Card: SKSpriteNode {
         let shareText = "당신은 나에게 이런 의미입니다."
         let shareImg = UIImage(cgImage: (self.texture?.cgImage())!)
         let shareItems = [shareText,shareImg] as [Any]
-        let activityController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: shareItems,
+                                                          applicationActivities: nil)
         self.scene?.view?.window?.rootViewController?.present(activityController, animated: true, completion: nil)
     }
 }
